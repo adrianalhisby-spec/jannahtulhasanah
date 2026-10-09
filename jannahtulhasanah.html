@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>✨ JANNAHTUL HASANAH - WISUDA ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Audiowide&family=Poppins:wght@300;400;600;800&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-tap-highlight-color:transparent}
+body{
+  background:#0a0316;
+  color:#fff;
+  font-family:'Poppins',sans-serif;
+  min-height:100vh;
+  padding:18px 10px 40px;
+  overflow-x:hidden;
+  display:flex;
+  justify-content:center;
+}
+
+/* ============ LOADING SCREEN ============ */
+#loader{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(circle at center, #1a0628 0%, #05010d 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loader.hide{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-circle{
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-ring{
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #ffd700;
+  border-right-color: #ff6b6b;
+  animation: spinRing 1.5s linear infinite;
+  box-shadow: 0 0 20px rgba(255,215,0,.5);
+}
+.loader-ring::before{
+  content:'';
+  position:absolute;
+  inset: 12px;
+  border-radius:50%;
+  border: 2px solid transparent;
+  border-bottom-color: #ff6b6b;
+  border-left-color: #7c3aed;
+  animation: spinRing 2s linear infinite reverse;
+}
+
+@keyframes spinRing{
+  to { transform: rotate(360deg); }
+}
+
+.loader-heart{
+  font-size: 44px;
+  color: #ff6b6b;
+  text-shadow: 0 0 20px #ff6b6b, 0 0 40px #d6336c;
+  animation: heartbeat 1.2s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+@keyframes heartbeat{
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.25); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+}
+
+.loader-text{
+  margin-top: 30px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255,107,107,.9);
+  animation: fadeText 2s ease-in-out infinite;
+}
+@keyframes fadeText{
+  0%, 100% { opacity: .7; }
+  50% { opacity: 1; }
+}
+
+.loader-bar{
+  margin-top: 20px;
+  width: 200px;
+  height: 4px;
+  background: rgba(255,255,255,.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.loader-bar-fill{
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff6b6b, #ffd700);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(255,215,0,.8);
+  animation: fillBar 2s ease-in-out forwards;
+}
+@keyframes fillBar{
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.loader-sub{
+  margin-top: 14px;
+  font-size: .7rem;
+  letter-spacing: 4px;
+  color: #a8a8a8;
+  text-transform: uppercase;
+  animation: dots 1.5s ease-in-out infinite;
+}
+@keyframes dots{
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+
+/* Background sederhana */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(214,51,108,.25),transparent 45%),
+    radial-gradient(circle at 80% 80%,rgba(124,58,237,.25),transparent 45%);
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-1;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%,#fff,transparent),
+    radial-gradient(1px 1px at 65% 15%,#ffd700,transparent),
+    radial-gradient(1px 1px at 85% 55%,#fff,transparent),
+    radial-gradient(1px 1px at 35% 75%,#ff6b6b,transparent),
+    radial-gradient(1px 1px at 55% 45%,#fff,transparent);
+  opacity:.7;
+}
+
+/* ============ ANIMASI NGAMBANG ============ */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes floatYSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ============ TOMBOL MUSIK ============ */
+.music-btn {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b, #ffd700);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 20px rgba(255,107,107,.8), 0 0 40px rgba(255,215,0,.5);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  animation: btnFloat 3s ease-in-out infinite, btnPulse 2s ease-in-out infinite;
+}
+@keyframes btnFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,107,107,.6), 0 0 30px rgba(255,215,0,.4); }
+  50% { box-shadow: 0 0 30px rgba(255,107,107,.9), 0 0 50px rgba(255,215,0,.7); }
+}
+
+.music-label {
+  position: fixed;
+  top: 30px;
+  right: 80px;
+  font-size: .7rem;
+  color: #ffd700;
+  letter-spacing: 1px;
+  font-weight: 500;
+  z-index: 9999;
+  text-shadow: 0 0 10px rgba(255,107,107,.9);
+  pointer-events: none;
+  animation: labelFade 3s ease-in-out infinite;
+}
+@keyframes labelFade {
+  0%, 100% { opacity: .7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* ============ CONTAINER ============ */
+.container{width:100%;max-width:460px;position:relative;z-index:1;padding-top:40px}
+
+/* ============ HEADER CARD ============ */
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:32px 18px;
+  text-align:center;
+  margin-bottom:22px;
+  box-shadow:0 0 40px rgba(214,51,108,.25);
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* ============ TITLE ============ */
+.title{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.45rem;
+  font-weight:900;
+  letter-spacing:3px;
+  color:#fff;
+  margin-bottom:8px;
+  text-shadow:0 0 15px #d6336c,0 0 30px #ff6b6b;
+  display:inline-block;
+  animation: floatYSoft 3s ease-in-out infinite;
+}
+
+.subtitle{
+  font-size:.78rem;
+  color:#b8b8b8;
+  font-weight:300;
+  letter-spacing:1.5px;
+  margin-bottom:18px;
+}
+
+/* ============ NAMA JANNAHTUL ============ */
+.nama{
+  font-family:'Great Vibes',cursive;
+  font-size:3.2rem;
+  line-height:1.1;
+  color:#ffd700;
+  display:inline-block;
+  text-shadow:
+    0 0 15px rgba(255,107,107,.9),
+    0 0 30px rgba(255,215,0,.7);
+  animation: floatY 3s ease-in-out infinite;
+}
+
+.pesan{
+  font-size:.78rem;
+  color:#d0d0d0;
+  line-height:1.75;
+  margin-top:20px;
+  font-style:italic;
+  font-weight:300;
+}
+
+/* ============ GRID FOTO ============ */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:22px;
+}
+.photo{
+  border-radius:14px;
+  padding:3px;
+  background:linear-gradient(135deg,#ff6b6b,#ffd700,#7c3aed);
+  box-shadow:0 0 15px rgba(255,107,107,.4);
+  animation: floatY 3s ease-in-out infinite;
+}
+.photo:nth-child(1){ animation-delay: 0s; }
+.photo:nth-child(2){ animation-delay: .8s; }
+.photo:nth-child(3){ animation-delay: 1.6s; }
+
+.inner{
+  border-radius:11px;
+  overflow:hidden;
+  aspect-ratio:3/4;
+  background:#000;
+}
+.inner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* ============ FOOTER MUHAMMAD ADRIAN ============ */
+.footer{
+  text-align:center;
+  padding:24px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.1);
+  animation: floatYSoft 3.5s ease-in-out infinite;
+}
+
+.label{
+  display:block;
+  font-size:.72rem;
+  letter-spacing:3px;
+  color:#a8a8a8;
+  margin-bottom:8px;
+  font-weight:300;
+  text-transform:uppercase;
+}
+
+.adrian{
+  font-family:'Audiowide',cursive;
+  font-size:1.5rem;
+  letter-spacing:2px;
+  color:#ffffff;
+  display:inline-block;
+  text-shadow:0 0 12px rgba(255,215,0,.6);
+  animation: floatYSoft 2.5s ease-in-out infinite;
+}
+
+/* ============ AJAKAN PUTAR MUSIK ============ */
+.music-hint {
+  margin-top: 22px;
+  text-align: center;
+  padding: 14px 18px;
+  border-radius: 15px;
+  background: rgba(255,107,107,.08);
+  border: 1px dashed rgba(255,215,0,.4);
+  animation: hintFloat 3s ease-in-out infinite, hintGlow 2.5s ease-in-out infinite;
+}
+.music-hint p {
+  font-size: .82rem;
+  color: #ffd700;
+  font-weight: 500;
+  letter-spacing: .5px;
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(255,107,107,.6);
+}
+.music-hint .icon {
+  display: inline-block;
+  animation: iconWiggle 1.5s ease-in-out infinite;
+  margin-right: 5px;
+}
+@keyframes hintFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes hintGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(255,107,107,.2); border-color: rgba(255,215,0,.3); }
+  50% { box-shadow: 0 0 25px rgba(255,107,107,.5); border-color: rgba(255,215,0,.7); }
+}
+@keyframes iconWiggle {
+  0%, 100% { transform: rotate(-10deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.15); }
+}
+
+/* ============ COPYRIGHT ============ */
+.copyright {
+  margin-top: 18px;
+  text-align: center;
+  font-size: .68rem;
+  color: #8a8a8a;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  padding: 12px 10px;
+  animation: copyrightGlow 4s ease-in-out infinite;
+}
+.copyright .name {
+  font-family: 'Audiowide', cursive;
+  color: #ffd700;
+  font-size: .72rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(255,215,0,.5);
+}
+.copyright .heart {
+  display: inline-block;
+  animation: heartBeatSmall 1.5s ease-in-out infinite;
+  margin: 0 2px;
+}
+@keyframes copyrightGlow {
+  0%, 100% { opacity: .7; }
+  50% { opacity: 1; }
+}
+@keyframes heartBeatSmall {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* ============ LIGHTBOX ============ */
+.lb{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.95);
+  display:flex;justify-content:center;align-items:center;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s,visibility .3s;
+}
+.lb.on{opacity:1;visibility:visible}
+.lb img{
+  max-width:92%;max-height:82vh;border-radius:16px;
+  box-shadow:0 0 40px #d6336c;
+}
+.x{
+  position:absolute;top:22px;right:26px;
+  font-size:44px;color:#fff;font-weight:200;
+  cursor:pointer;line-height:1;
+}
+.x:hover{color:#ff6b6b}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:380px){
+  .title{font-size:1.15rem;letter-spacing:2px}
+  .nama{font-size:2.6rem}
+  .adrian{font-size:1.2rem;letter-spacing:1.5px}
+  .pesan{font-size:.7rem}
+  .music-btn{width:46px;height:46px;font-size:19px;top:14px;right:14px}
+  .music-label{font-size:.62rem;right:68px;top:26px}
+  .music-hint p{font-size:.75rem}
+  .loader-text{font-size:1.6rem}
+  .loader-bar{width:160px}
+  .copyright{font-size:.6rem}
+  .copyright .name{font-size:.65rem}
+}
+
+/* Prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========================================== -->
+<!-- ============ LOADING SCREEN =============== -->
+<!-- ========================================== -->
+<div id="loader">
+  <div class="loader-circle">
+    <div class="loader-ring"></div>
+    <div class="loader-heart">❤</div>
+  </div>
+  <div class="loader-text">Loading...</div>
+  <div class="loader-bar">
+    <div class="loader-bar-fill"></div>
+  </div>
+  <div class="loader-sub">Menyiapkan kejutan spesial</div>
+</div>
+
+<!-- ============ TOMBOL MUSIK DI ATAS ============ -->
+<div class="music-label" id="musicLabel">🎵 Tap untuk musik</div>
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+  <span id="musicIcon">🎵</span>
+</div>
+
+<div class="container">
+
+  <!-- HEADER CARD -->
+  <div class="card">
+    <h1 class="title">SELAMAT WISUDA</h1>
+    <p class="subtitle">✦ Langkah Baru Menuju Cahaya Ilahi ✦</p>
+    <span class="nama">Jannahtul Hasanah</span>
+    <p class="pesan">"Semoga ilmumu menjadi cahaya yang menerangi dunia, dan menjadi jembatan indah menuju Surga-Nya Allah. Teruslah melangkah dengan doa, karena kesuksesan sejati adalah keridhoan-Nya."</p>
+  </div>
+
+  <!-- FOTO 3 KOLOM -->
+  <div class="grid">
+    <div class="photo"><div class="inner">
+      <img src="https://i.ibb.co.com/9HwNj0c5/file-000000005b7c820bbce130719293a711.png" alt="" onclick="op(this.src)">
+    </div></div>
+    <div class="photo"><div class="inner">
+      <img src="https://i.ibb.co.com/KcpsYg1B/file-0000000084d88230abc55b1722a8b89a.png" alt="" onclick="op(this.src)">
+    </div></div>
+    <div class="photo"><div class="inner">
+      <img src="https://i.ibb.co.com/bMgtFqvQ/file-000000000c3881f8a13e90d785de20c3.png" alt="" onclick="op(this.src)">
+    </div></div>
+  </div>
+
+  <!-- FOOTER: MUHAMMAD ADRIAN -->
+  <div class="footer">
+    <span class="label">Salam Hangat</span>
+    <span class="adrian">Muhammad Adrian 💖</span>
+  </div>
+
+  <!-- AJAKAN PUTAR MUSIK (TEKS BARU) -->
+  <div class="music-hint">
+    <p><span class="icon">🎧</span> Diputer Yo music nyo biar nambah nuansa galeri 🤭</p>
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="copyright">
+    Dibuat oleh <span class="name">Muhammad Adrian Al Hisby</span> 🫰<span class="heart">😆</span>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <span class="x" onclick="cl()">&times;</span>
+  <img id="lbi" src="" alt="">
+</div>
+
+<!-- ========================================== -->
+<!-- ============ MUSIK GITHUB ================= -->
+<!-- ========================================== -->
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="https://github.com/adrianalhisby-spec/Adrian/raw/refs/heads/main/Wedding%20Nasheed%20-%20Muhammad%20Al%20Muqit%20_%20Lyrics%20Arabic%20+%20Terjemahan%20_%20%F0%9D%98%88%F0%9D%98%B3%F0%9D%98%A2%F0%9D%98%A3%F0%9D%98%AA%F0%9D%98%A4%20%F0%9D%98%95%F0%9D%98%A2%F0%9D%98%B4%F0%9D%98%A9%F0%9D%98%A6%F0%9D%98%A6%F0%9D%98%A5%20_%20%D9%85%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%D9%85%D9%82%D9%8A%D8%B7.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung audio.
+</audio>
+
+<script>
+  /* ========================================== */
+  /* ============ LOADING SCREEN =============== */
+  /* ========================================== */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      loader.classList.add('hide');
+    }, 2200);
+  });
+
+  /* ========================================== */
+  /* ============ LIGHTBOX FOTO ================ */
+  /* ========================================== */
+  const lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+  function op(s){lbi.src=s;lb.classList.add('on')}
+  function cl(){lb.classList.remove('on')}
+  lb.addEventListener('click',e=>{if(e.target===lb)cl()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')cl()});
+
+  /* ========================================== */
+  /* ============ MUSIK GITHUB ================= */
+  /* ========================================== */
+  const music = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  const icon = document.getElementById('musicIcon');
+  const musicLabel = document.getElementById('musicLabel');
+  let isPlaying = false;
+
+  function playMusic() {
+    music.play().then(() => {
+      icon.textContent = '🎵';
+      musicLabel.textContent = '🎵 Musik Aktif';
+      isPlaying = true;
+    }).catch(err => {
+      console.log('Autoplay diblokir:', err.message);
+      icon.textContent = '🔇';
+      musicLabel.textContent = '🔇 Tap untuk musik';
+    });
+  }
+
+  function stopMusic() {
+    music.pause();
+    icon.textContent = '🔇';
+    musicLabel.textContent = '🔇 Tap untuk musik';
+    isPlaying = false;
+  }
+
+  function toggleMusic() {
+    if (isPlaying) stopMusic();
+    else playMusic();
+  }
+
+  // === AUTOPLAY OTOMATIS ===
+  window.addEventListener('load', () => {
+    setTimeout(playMusic, 300);
+  });
+
+  // Fallback: trigger saat user interaksi apapun
+  function autoTrigger() {
+    if (!isPlaying) playMusic();
+    ['click','touchstart','keydown','scroll'].forEach(evt => {
+      document.removeEventListener(evt, autoTrigger);
+      window.removeEventListener(evt, autoTrigger);
+    });
+  }
+  ['click','touchstart','keydown','scroll'].forEach(evt => {
+    document.addEventListener(evt, autoTrigger, { once: true, passive: true });
+    window.addEventListener(evt, autoTrigger, { once: true, passive: true });
+  });
+
+  // Pause saat tab tidak aktif
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isPlaying) {
+      music.pause();
+    } else if (!document.hidden && isPlaying) {
+      music.play();
+    }
+  });
+</script>
+
+</body>
+</html>
